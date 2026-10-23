@@ -1,0 +1,6 @@
+<section class="request-overview" aria-labelledby="request-overview-heading">
+<div class="overview-heading"><h2 id="request-overview-heading">At a glance</h2><p>{{ business.name if customer_mode else g.workspace.name }} · {{ 'All your requests' if customer_mode else 'All business requests' }}</p></div>
+<dl class="overview-values">
+{% if customer_mode %}<div><dt>Total requests</dt><dd>{{ all_total }}</dd></div><div><dt>Booked requests</dt><dd>{{ counts['Appointment booked'] }}</dd></div><div><dt>Unread replies</dt><dd>{{ navigation_unread }}</dd></div>
+{% else %}<div><dt>Total requests</dt><dd>{{ work_views['all'].count }}</dd></div><div><dt>Overdue follow-ups</dt><dd>{{ work_views['overdue'].count }}</dd></div><div><dt>Unread messages</dt><dd>{{ navigation_unread }}</dd></div>{% endif %}
+</dl></section>

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}{% from 'macros.html' import icon, csrf with context %}
+{% block content %}
+<section class="message-page account-page">
+<p class="muted">Account separation</p>
+<h1>You're signed in to {{ 'the Customer portal' if g.user.account_kind=='customer' else 'Admin' }}.</h1>
+<p>This page is for {{ 'customers who request service' if expected_kind=='customer' else 'business staff who manage inquiries' }}. Your current account is {{ g.user.email }}.</p>
+<p>Continue with your current account, or sign out before using a different account. Switching signs out this browser session.</p>
+<a class="button primary" href="{{ url_for(home) }}">{{ 'Continue to My requests' if g.user.account_kind=='customer' else 'Continue to Admin' }}{{ icon('arrow') }}</a>
+<form method="post" action="{{ url_for('auth.logout') }}" class="portal-switch-form" data-pending="Signing out…">{{ csrf() }}<input type="hidden" name="portal" value="{{ 'customer' if expected_kind=='customer' else 'admin' }}">{% if business %}<input type="hidden" name="business" value="{{ business.public_id }}">{% endif %}<button class="button secondary">Sign out and switch to {{ 'Customer sign in' if expected_kind=='customer' else 'Admin sign in' }}</button></form>
+</section>
+{% endblock %}

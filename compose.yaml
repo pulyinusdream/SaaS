@@ -1,0 +1,33 @@
+services:
+  app:
+    build: .
+    init: true
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${KJANCY_LOCAL_PORT:-4201}:8080"
+    environment:
+      PORT: "8080"
+      KJANCY_BIND: "0.0.0.0"
+      KJANCY_DATA_DIR: /data
+      KJANCY_PUBLIC_BASE_URL: "${KJANCY_PUBLIC_BASE_URL:?Set the canonical HTTPS app origin}"
+      KJANCY_TRUSTED_PROXY: "${KJANCY_TRUSTED_PROXY:?Set the exact TLS proxy peer IP}"
+      KJANCY_MAIL_MODE: smtp
+      KJANCY_MAIL_FROM: "${KJANCY_MAIL_FROM:?Set the verified sender address}"
+      KJANCY_SMTP_HOST: "${KJANCY_SMTP_HOST:?Set the SMTP provider host}"
+      KJANCY_SMTP_PORT: "${KJANCY_SMTP_PORT:-465}"
+      KJANCY_SMTP_SECURITY: "${KJANCY_SMTP_SECURITY:-ssl}"
+      KJANCY_SMTP_USERNAME: "${KJANCY_SMTP_USERNAME:?Set the SMTP username}"
+      KJANCY_SMTP_PASSWORD: "${KJANCY_SMTP_PASSWORD:?Set the SMTP key privately}"
+    volumes:
+      - kjancy-data:/data
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    stop_grace_period: 20s
+
+volumes:
+  kjancy-data:

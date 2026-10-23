@@ -1,0 +1,19 @@
+{% extends 'base.html' %}{% from 'macros.html' import field, csrf, icon, error_summary with context %}
+{% block content %}
+<div class="page-title"><div><h1>Request a service</h1><p>Tell {{ business.name }} what you need.</p></div><a class="button secondary" href="{{ url_for('customers.home') }}">My requests{{ icon('arrow') }}</a></div>
+<div class="customer-two-column"><section aria-label="Service request form">
+<form method="post" class="customer-service-form" data-pending="Sending request…">{{ csrf() }}<input type="hidden" name="request_token" value="{{ request_token }}">{{ error_summary(errors) }}
+<fieldset class="form-section"><legend>What service do you need?</legend>
+<div class="field"><label for="service">Service <span aria-hidden="true">*</span></label><select id="service" name="service" required {% if errors.get('service') %}aria-invalid="true" aria-describedby="service-error"{% endif %}><option value="">Choose a service</option>{% if values.service|default('') and values.service not in services %}<option value="{{ values.service }}" selected>Unavailable: {{ values.service }}</option>{% endif %}{% for service in services %}<option value="{{ service }}" {% if values.service|default('')==service %}selected{% endif %}>{{ service }}</option>{% endfor %}</select>{% if errors.get('service') %}<p class="field-error" id="service-error">{{ errors.service }}</p>{% endif %}</div>
+<div class="field"><label for="message">Tell us a little more <span class="muted">Optional</span></label><textarea id="message" name="message" rows="4" maxlength="2000" aria-describedby="message-hint{% if errors.get('message') %} message-error{% endif %}" {% if errors.get('message') %}aria-invalid="true"{% endif %}>{{ values.message|default('') }}</textarea><p class="field-hint" id="message-hint">For example, what's wrong and when it started.</p>{% if errors.get('message') %}<p class="field-error" id="message-error">{{ errors.message }}</p>{% endif %}</div>
+</fieldset>
+<fieldset class="form-section"><legend>Where can we help?</legend>
+{{ field('location','Service address',values,errors,required=true,autocomplete='street-address',maxlength=200) }}
+{{ field('phone','Contact phone',values,errors,type='tel',autocomplete='tel',maxlength=40,hint='Optional. Add a number if you prefer a call.') }}
+</fieldset>
+<div class="request-contact-summary"><strong>{{ g.user.name }}</strong><span>We'll include your account email: {{ g.user.email }}</span></div>
+<div class="honeypot" aria-hidden="true"><label for="website_url">Website</label><input id="website_url" name="website_url" tabindex="-1" autocomplete="off"></div>
+<button class="button primary">Send service request{{ icon('arrow') }}</button><p class="field-hint">Required fields are marked *. This sends a request; it does not book an appointment.</p>
+</form></section>
+<aside class="customer-guide"><h2>What happens next?</h2><p>The business reviews your request and contacts you to arrange the next step.</p><p>You can check its status in My requests. No automatic email or calendar confirmation is sent in local preview.</p>{% if service_areas %}<h3>Service areas</h3><p>{{ service_areas|join(' · ') }}</p><p class="field-hint">The business will confirm whether it can serve your address.</p>{% endif %}{% include 'customer_business_contact.html' %}<p class="field-hint">Your details go to {{ business.name }} and its staff. Leave out payment details and sensitive records.</p></aside></div>
+{% endblock %}

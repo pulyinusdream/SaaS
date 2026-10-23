@@ -1,0 +1,19 @@
+# Public website redesign
+
+The connected website keeps KJAncy's mint/forest identity while using a more deliberate editorial hierarchy: a short headline with a support photograph inside it, clear service explanations, natural-color trade images, a readable package comparison, native FAQ disclosures and a calmer contact form. Service, privacy and error pages share the typography, navigation, image crops, buttons and footer through `marketing/assets/premium.css`.
+
+The website remains buildless HTML/CSS/JavaScript served by the existing Flask blueprint. The static form marker is preserved so the connected server still injects its protected form, validation and receipt. The preset website guide, interactive journey, package selector and all original page routes remain available. No schema, authentication, permissions, runtime dependencies or business pricing changed. The earlier standalone website archive is separate; the redesigned connected website is included in the SaaS source archive.
+
+Design Taste direction: **The sentence is the layout**, seed **50067295**. The headset acts as the visual handoff between Good work and Great backup. Existing package selection is the live interaction. Brand continuity overrides the dealt font: self-hosted IBM Plex Sans from the app is paired with the already licensed Source Serif 4. The existing $997/$1997 monthly packages, $500 setup fees, agreed coverage hours, exclusions and no-confirmed-appointment disclosures remain intact.
+
+Final internal visual critique: design7.8, usability8.0, creativity7.0, content7.6; weighted7.71/10. This is a self-review, not an external award/jury evaluation. The idea remains relevant to the support-agency category rather than exclusive brand proof. The floating guide can obscure content at the screen edge until the visitor scrolls. Browser checks are targeted and do not constitute a complete accessibility audit. CUA was the supported inspection path; the skill's separate direct-browser inspector was not run.
+
+## Image provenance
+
+- **Telephone headset and notebook on a sunlit desk** was generated for this project on2026-10-23 using OpenAI image generation. The1536x1024 WebP is132888bytes. It is illustrative, not a photograph of the actual office, staff or customer. This is disclosed in the site's Photography credits section and the asset manifest.
+- **A person in a blue hoodie and baseball cap working on an electrical meter**, Raze Solar, [Unsplash source](https://unsplash.com/photos/person-working-on-electrical-meter-_aSFmmvS62I), [Unsplash License](https://unsplash.com/license). Existing trade-context hero image.
+- **A Man Fixing the Wall**, Antoni Shkraba, [Pexels source](https://www.pexels.com/photo/a-man-fixing-the-wall-4981812/), [Pexels License](https://www.pexels.com/license). Existing website-service image.
+- **Electricians at Work**, Annas Zakaria, [Pexels source](https://www.pexels.com/photo/electricians-at-work-10871585/), [Pexels License](https://www.pexels.com/license). Existing About context image.
+- **379th ECES HVAC technicians combat rising temperatures (8502258)**, Airman1st Class Derrick Bole/U.S. Air Force AFCENT, [Wikimedia source](https://commons.wikimedia.org/wiki/File:379th_ECES_HVAC_technicians_combat_rising_temperatures_(8502258).jpg), [Public domain](https://creativecommons.org/publicdomain/mark/1.0/). Existing follow-up context image.
+
+Original attribution links remain in `privacy.html#image-credits` and `assets/images/credits.json`. No stock photograph is presented as a KJAncy team or customer portrait. No new testimonial, partner logo, business metric or guaranteed outcome was invented. Before public launch, the owner should confirm service scope, prices, coverage capacity and business contact details; the existing local-preview noindex and hosting status remain unchanged.

@@ -1,0 +1,41 @@
+[
+  {
+    "file": "meter-work.jpg",
+    "title": "A person in a blue hoodie and baseball cap working on an electrical meter",
+    "creator": "Raze Solar",
+    "page": "https://unsplash.com/photos/person-working-on-electrical-meter-_aSFmmvS62I",
+    "license": "Unsplash License",
+    "licenseUrl": "https://unsplash.com/license"
+  },
+  {
+    "file": "wall-installation.jpg",
+    "title": "A Man Fixing the Wall",
+    "creator": "Antoni Shkraba",
+    "page": "https://www.pexels.com/photo/a-man-fixing-the-wall-4981812/",
+    "license": "Pexels License",
+    "licenseUrl": "https://www.pexels.com/license/"
+  },
+  {
+    "file": "electrical-work.jpg",
+    "title": "Electricians at Work",
+    "creator": "Annas Zakaria",
+    "page": "https://www.pexels.com/photo/electricians-at-work-10871585/",
+    "license": "Pexels License",
+    "licenseUrl": "https://www.pexels.com/license/"
+  },
+  {
+    "file": "379th-eces-hvac-technicians-combat-rising-temperatures.jpg",
+    "title": "379th ECES HVAC technicians combat rising temperatures (8502258)",
+    "creator": "Airman 1st Class Derrick Bole / U.S. Air Force AFCENT",
+    "page": "https://commons.wikimedia.org/wiki/File:379th_ECES_HVAC_technicians_combat_rising_temperatures_(8502258).jpg",
+    "license": "Public domain",
+    "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/"
+  },
+  {
+    "file": "dispatch-desk.webp",
+    "title": "Telephone headset and notebook on a sunlit desk",
+    "creator": "Generated for KJAncy using OpenAI image generation, 2026-10-23",
+    "provenance": "Purpose-built illustrative still life; does not depict an actual office, employee or customer.",
+    "source": "exec-1b2be238-b682-412a-b6cc-4dc93821bac3.png"
+  }
+]

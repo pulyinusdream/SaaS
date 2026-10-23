@@ -1,0 +1,7 @@
+<section class="auth-story" aria-label="KJAncy home services">
+  <div class="auth-image-wrap"><img class="auth-photo" src="{{ url_for('static',filename='images/home-entry.webp') }}" width="1122" height="1402" alt="" fetchpriority="high" decoding="async"></div>
+  <div class="auth-story-copy"><span class="story-note">KJAncy · Home services, connected</span>
+    <h2>{{ 'Your home, looked after.' if auth_audience=='customer' else 'Keep good work moving.' }}</h2>
+    <p>{{ 'Request a service, follow its progress, and stay in touch with your service team.' if auth_audience=='customer' else 'Bring requests, conversations and appointments into one organised workday.' }}</p>
+  </div>
+</section>

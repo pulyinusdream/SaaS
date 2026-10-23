@@ -1,0 +1,23 @@
+{% extends 'base.html' %}{% set public_page=true %}{% from 'macros.html' import csrf, icon, inquiry_fields, error_summary with context %}
+{% block content %}
+<div class="inquiry-layout">
+<section class="inquiry-intro">
+<div class="business-emblem" aria-hidden="true">{{ business.name[:1] }}</div><p class="business-name">{{ business.name }}</p>
+<h1>{% if staff_preview|default(false) %}Customer form<br>preview.{% else %}What can we<br>help you with?{% endif %}</h1>
+<p>{{ 'Review the fields your customers see. Service requests are submitted from the Customer side.' if staff_preview|default(false) else 'Share a few details about the service you need. The team will review your inquiry and get in touch.' }}</p>
+<div class="inquiry-expectation">{{ icon('clock') }}<p>This is a service inquiry. An appointment is confirmed when the team contacts you.</p></div>
+<a class="button primary public-request-jump" href="#service-request">{{ 'Preview fields' if staff_preview|default(false) else 'Request service' }}{{ icon('arrow') }}</a>
+{% if service_areas %}<div class="public-business-areas"><h2>Service areas</h2><p>{{ service_areas|join(' · ') }}</p><span>Share your address below. The team will confirm whether they can help.</span></div>{% endif %}
+{% if business.contact_email or business.contact_phone %}<div class="public-business-contact"><h2>Contact the business</h2>{% if business.contact_email %}<a href="mailto:{{ business.contact_email|urlencode }}">{{ icon('mail') }}{{ business.contact_email }}</a>{% endif %}{% if business.contact_phone %}<a href="tel:{{ business.contact_phone }}">{{ icon('phone') }}{{ business.contact_phone }}</a>{% endif %}</div>{% endif %}
+</section>
+<section class="inquiry-form" id="service-request" tabindex="-1">
+{% if staff_preview|default(false) %}
+<h2>Admin preview</h2><p class="intro" id="preview-explanation">Read only. To record an inquiry received by phone or email, use Add lead in Admin. Customers use their own portal or the signed-out guest form.</p>
+<a class="button secondary" href="{{ url_for('leads.inbox') }}">Back to Admin{{ icon('arrow') }}</a>
+<fieldset disabled class="preview-fields" aria-describedby="preview-explanation"><legend>Guest request fields</legend>{{ inquiry_fields(values,errors,public=true) }}</fieldset>
+{% else %}
+<h2>Request service</h2><p class="intro">Required fields are marked with an asterisk.</p><p class="field-hint">Want a personal request history? <a href="{{ url_for('customers.signup',public_id=business.public_id) }}">Create a customer account</a> or <a href="{{ url_for('auth.customer_login',business=business.public_id) }}">sign in</a>. You can also send this form as a guest.</p>
+<form method="post" data-pending="Sending inquiry…">{{ csrf() }}{{ error_summary(errors) }}{{ inquiry_fields(values,errors,public=true) }}<div class="honeypot" aria-hidden="true"><label for="website_url">Website</label><input id="website_url" name="website_url" tabindex="-1" autocomplete="off"></div><button class="button primary full">Send inquiry{{ icon('arrow') }}</button><p class="field-hint privacy-note">Your details are shared with {{ business.name }} and its assigned dispatchers to respond to this request. Do not include payment details or sensitive records.</p></form>
+{% endif %}
+</section></div>
+{% endblock %}

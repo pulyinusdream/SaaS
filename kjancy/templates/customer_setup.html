@@ -1,0 +1,12 @@
+{% extends 'base.html' %}{% from 'macros.html' import field, csrf, icon, error_summary with context %}
+{% block content %}
+<div class="page-title"><div><h1>Contact details</h1><p>Save the phone number and address you usually use for service.</p></div></div>
+{{ error_summary(errors) }}
+<div class="customer-two-column"><section aria-labelledby="contact-heading"><h2 id="contact-heading">Your usual service address</h2><p class="customer-section-copy">We'll prefill these details on new requests. You can use a different address each time.</p>
+<form method="post" class="customer-contact-form" data-pending="Saving details…">{{ csrf() }}<input type="hidden" name="version" value="{{ profile.version }}">
+{{ field('phone','Phone number',values,errors,type='tel',autocomplete='tel',maxlength=40,hint='Optional. The business can also contact your account email.') }}
+{{ field('location','Service address',values,errors,required=true,autocomplete='street-address',maxlength=200) }}
+<div class="personal-actions">{% if stale %}<a class="button secondary" href="{{ url_for('customers.get_started') }}">Reload latest details</a>{% endif %}<button class="button primary" {% if stale %}disabled{% endif %}>Save contact details</button></div>
+</form></section>
+<aside class="customer-guide"><h2>Your account</h2><dl class="customer-account-identity"><div><dt>Name</dt><dd>{{ g.user.name }}</dd></div><div><dt>Email</dt><dd>{{ g.user.email }}</dd></div></dl><a class="customer-inline-link" href="{{ url_for('account_settings.settings') }}">Change your name or password{{ icon('arrow') }}</a><p>Ready to request a service? Choose the service you need and tell the business how it can help.</p><a class="button secondary" href="{{ url_for('customers.form') }}">New request{{ icon('arrow') }}</a>{% include 'customer_business_contact.html' %}</aside></div>
+{% endblock %}
